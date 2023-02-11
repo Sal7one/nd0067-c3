@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cartitem.model';
 import { RepositoryService } from 'src/app/services/repository.service';
 
@@ -10,14 +11,14 @@ import { RepositoryService } from 'src/app/services/repository.service';
 export class CartComponent implements OnInit {
   cartItems : CartItem[] = [];
   totalMoney: number = 0;
-  
   fullname: string = "";
   address: string = "";
   creditCard: string = "";
 
  constructor(
-   private repo: RepositoryService
-   ) { }
+   private repo: RepositoryService,
+   private router: Router
+      ) { }
 
    ngOnInit(): void {
     this.cartItems = this.repo.getCart();
@@ -51,5 +52,12 @@ export class CartComponent implements OnInit {
  }
 
  submitForm(){
-  console.log("submitted")
- }}
+
+  console.log(this.fullname)
+  // Validate as necessary 
+  this.router.navigate(['/confirm', 
+  { 
+    customerName: this.fullname,
+    total: this.totalMoney
+  }]);
+}}

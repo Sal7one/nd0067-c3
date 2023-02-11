@@ -23,7 +23,7 @@
                 type="text" name="fullname"
                 minlength="3"
                 placeholder="3 characters"
-                (ngModel)="fullname"
+                [(ngModel)]="fullname"
                 required>
                 <label for="address">Address</label>
                 
@@ -32,13 +32,13 @@
                 name="address"
                 minlength="10"
                 placeholder="10 characters"
-                (ngModel)="address"
+                [(ngModel)]="address"
                 required>
                 <label for="creditcard">Credit card number</label>
                 <input 
                 type="text" 
                 name="creditcard"
-                (ngModel)="creditCard"
+                [(ngModel)]="creditCard"
                 minlength="16"
                 placeholder="16 digits"
                 required
