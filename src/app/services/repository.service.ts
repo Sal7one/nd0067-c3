@@ -69,13 +69,14 @@ export class RepositoryService {
     return this.getCart().find(currentCart => currentCart.product.id === id);
   }
 
-  updateQuantity(itemToUpdate : CartItem, quantity: number){
+  updateQuantity(itemToUpdate : CartItem){
+    let cart = this.getCart();
+    const itemInCart = this.getCartItemById(itemToUpdate.product.id);
+    itemInCart!.quantity = itemToUpdate.quantity;
+    cart = cart.filter(currentCart => currentCart.product.id !== itemInCart!.product.id);
+    cart.push(itemInCart!);
 
-      const itemInCart = this.getCartItemById(itemToUpdate.product.id);
-      itemInCart!.quantity = quantity;
-
-      const cart = this.getCart();
-      this.localDB.save("cart", JSON.stringify(cart))
+    this.localDB.save("cart", JSON.stringify(cart))
   }
 
   addToCart(newItem: CartItem) {
@@ -100,7 +101,7 @@ export class RepositoryService {
 
   removeItemFromCart(cartItem :CartItem){
     let cart = this.getCart();
-    cart.filter(it => it.product.id !== cartItem.product.id )
+    cart = cart.filter(it => it.product.id !== cartItem.product.id )
     this.localDB.save("cart", JSON.stringify(cart))
   }
 }
