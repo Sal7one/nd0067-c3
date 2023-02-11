@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Product } from "src/app/models/product.model";
 import { Subscription } from 'rxjs';
-
 import { RepositoryService } from "src/app/services/repository.service";
 import { CartItem } from "src/app/models/cartitem.model";
+import Swal from 'sweetalert2';
+
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
@@ -29,8 +30,11 @@ export class ProductListComponent implements OnInit {
 
   addToCart(cartItem : CartItem){
     this.repo.addToCart(cartItem);
+    this.alertWithSuccess('Item Added To Cart!');
   }
-
+  alertWithSuccess(msg: string){  
+    Swal.fire( msg , 'Success')  
+  }  
   // Avoid Leaks
   ngOnDestroy(): void {
     this.prodcutStream?.unsubscribe();

@@ -18,7 +18,6 @@
 # Pages
     ProductListComponent
 
-
         ProductCardComponent
 
     ProductdetailsComponent

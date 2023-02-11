@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CartItem } from 'src/app/models/cartitem.model';
 import { Product } from 'src/app/models/product.model';
 import { RepositoryService } from 'src/app/services/repository.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productdetails',
@@ -50,10 +50,16 @@ export class ProductdetailsComponent implements OnInit {
     // Reset value after adding
     this.amount = 1;
     this.repo.addToCart(cartItem);
+    this.alertWithSuccess('Item Added To Cart!');
   }
 
   // Avoid Leaks
   ngOnDestroy(): void {
     this.prodcutStream?.unsubscribe();
   }
+
+  alertWithSuccess(msg: string){  
+    Swal.fire( msg , 'success')  
+  }  
+ 
 }

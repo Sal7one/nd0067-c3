@@ -17,14 +17,19 @@
         </div>
         
         <div >
-            <form #form="ngForm" (ngSubmit)="submitForm()" class="form">
+            <form  [formGroup]="cartForm"  #form="ngForm" (ngSubmit)="submitForm()" class="form" >
+
                 <label for="fullname">Full name</label>
                 <input 
                 type="text" name="fullname"
                 minlength="3"
                 placeholder="3 characters"
                 [(ngModel)]="fullname"
-                required>
+                formControlName="fname" 
+                >
+                <div *ngIf="formControls['fname'].invalid && (formControls['fname'].dirty || formControls['fname'].touched)"
+                    class="alert alert-danger">Name has to be 3 characters or more</div>
+
                 <label for="address">Address</label>
                 
                 <input 
@@ -33,7 +38,11 @@
                 minlength="10"
                 placeholder="10 characters"
                 [(ngModel)]="address"
-                required>
+                formControlName="adress" 
+                >
+                <div *ngIf="formControls['adress'].invalid && (formControls['adress'].dirty || formControls['adress'].touched)"
+                class="alert alert-danger">Address has to be 10 characters or more</div>
+
                 <label for="creditcard">Credit card number</label>
                 <input 
                 type="text" 
@@ -41,8 +50,11 @@
                 [(ngModel)]="creditCard"
                 minlength="16"
                 placeholder="16 digits"
-                required
+                formControlName="cc" 
                 >
+                <div *ngIf="formControls['cc'].invalid && (formControls['cc'].dirty || formControls['cc'].touched)"
+                class="alert alert-danger">Creidt Card has to be 16 characters or more</div>
+
                 <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
             </form>
         </div>
