@@ -8,8 +8,6 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class RepositoryService {
-  // Assume DB
-  cart: CartItem[] = [];
   products = new BehaviorSubject<Product[]>([]);
   savedProductsStream = new BehaviorSubject<Product[]>([]);
 
@@ -59,17 +57,27 @@ export class RepositoryService {
     }
   }
 
-  getCart() {
-    this.cart;
+  getCart(): CartItem[] {
+    const savedCart = this.localDB.get("cart") as string;
+    if(savedCart == null)
+      return [];
+    return JSON.parse(savedCart);
   }
 
-  addToCart(item: CartItem) {
-    this.cart.push(item);
-    return this.cart;
+  addToCart(newItem: CartItem) {
+    const cart = this.getCart();
+    const itemInCart = cart.find(currentCart => currentCart.product.id === newItem.product.id);
+
+    if(itemInCart){
+      itemInCart.quantity += newItem.quantity;
+    }else{
+      cart.push(newItem);
+    }
+    this.localDB.save("cart", JSON.stringify(cart))
   }
 
   cleartCart() {
-    this.cart = [];
-    return this.cart;
+    this.localDB.save("cart", "[]")
+    return [];
   }
 }

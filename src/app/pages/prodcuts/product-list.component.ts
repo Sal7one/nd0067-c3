@@ -3,6 +3,7 @@ import { Product } from "src/app/models/product.model";
 import { Subscription } from 'rxjs';
 
 import { RepositoryService } from "src/app/services/repository.service";
+import { CartItem } from "src/app/models/cartitem.model";
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
@@ -20,11 +21,14 @@ export class ProductListComponent implements OnInit {
         this.prodcutStream = productsProvider.subscribe((products) => {
           this.products = products;
         });
-
       })
       .catch((err) => {
         console.log("Error Calling repo from ProductListComponent");
       });
+  }
+
+  addToCart(cartItem : CartItem){
+    this.repo.addToCart(cartItem);
   }
 
 
