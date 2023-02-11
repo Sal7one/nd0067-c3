@@ -1,9 +1,12 @@
+div{padding: 0;
+margin: 0;}
 .header {
   display: flex;
   text-align: center;
   background: #5308bb;
   color: hsl(0, 0%, 100%);
-  padding:10px;
+  padding:0px;
+  margin: 0;
   flex-direction: column;
   align-content: space-between;
   justify-content: flex-start;
@@ -15,7 +18,7 @@
   }
 
   nav{
-   margin: 6px;
+   margin-right: 6px;
   }
 
   .icon{
@@ -29,5 +32,5 @@
   }
 
   .subtitle{
-    font-size: 38px;
+    font-size: 48px;
   }

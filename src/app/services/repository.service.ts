@@ -9,6 +9,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RepositoryService {
   products = new BehaviorSubject<Product[]>([]);
+  cartStream = new BehaviorSubject<CartItem[]>([]);
   savedProductsStream = new BehaviorSubject<Product[]>([]);
 
   PRODUCTS_API: string = `https://raw.githubusercontent.com/udacity/nd-0067-c3-angular-fundamentals-project-starter/main/src/assets/data.json`;
@@ -68,20 +69,38 @@ export class RepositoryService {
     return this.getCart().find(currentCart => currentCart.product.id === id);
   }
 
+  updateQuantity(itemToUpdate : CartItem, quantity: number){
+
+      const itemInCart = this.getCartItemById(itemToUpdate.product.id);
+      itemInCart!.quantity = quantity;
+
+      const cart = this.getCart();
+      this.localDB.save("cart", JSON.stringify(cart))
+  }
+
   addToCart(newItem: CartItem) {
-    const cart = this.getCart();
+    let cart = this.getCart();
     const itemInCart = this.getCartItemById(newItem.product.id);
 
     if(itemInCart){
       itemInCart.quantity += newItem.quantity;
+      cart = cart.filter(currentCart => currentCart.product.id !== itemInCart.product.id);
+      cart.push(itemInCart);
     }else{
       cart.push(newItem);
     }
+
     this.localDB.save("cart", JSON.stringify(cart))
   }
 
   cleartCart() {
     this.localDB.save("cart", "[]")
     return [];
+  }
+
+  removeItemFromCart(cartItem :CartItem){
+    let cart = this.getCart();
+    cart.filter(it => it.product.id !== cartItem.product.id )
+    this.localDB.save("cart", JSON.stringify(cart))
   }
 }

@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
     this.repo.addToCart(cartItem);
   }
 
-
   // Avoid Leaks
   ngOnDestroy(): void {
     this.prodcutStream?.unsubscribe();

@@ -1,1 +1,27 @@
-<p>cart works!</p>
+<app-header></app-header>
+
+<div >
+        
+    <div class="article" *ngIf="cartItems.length > 0; else elseBlock">
+
+        <div class="cartItemsList">
+            <div *ngFor="let cartItem of cartItems" class="item" >
+                <img src="{{cartItem.product.url}}" width="180" alt="">
+                <h3>{{ cartItem.product.name}}</h3>
+                <h3>{{ cartItem.product.price}}$</h3>
+                <input type="number" value="{{cartItem.quantity}}">
+            </div>
+        </div>
+    
+        <h2>Total:{{totalMoney}}$</h2>
+        <button class="clear-Btn" (click)="clearCart()"><span>Clear Cart</span></button>
+        </div>
+<ng-template #elseBlock>
+    <h1>Your Cart is empty start adding items!</h1>
+</ng-template>
+
+    <a routerLink="/"> Back To Products</a>
+</div>      
+    
+    
+    
