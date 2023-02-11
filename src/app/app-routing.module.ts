@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http'
 import { ProductListComponent } from './pages/prodcuts/product-list.component';
+import { ProductdetailsComponent } from './pages/productdetails/productdetails.component';
 
 const routes: Routes = [
   {path: '', component: ProductListComponent},
-  // {path: 'prodcuts', component: ProductListComponent},
-  // {path: 'prodcuts/:id', component: ProductDeatilsComponent},
+  {path: 'products/:id', component: ProductdetailsComponent},
   {path: '**', redirectTo: ''}
 ];
 

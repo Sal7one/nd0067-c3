@@ -1,9 +1,13 @@
+*{
+    padding: 2px;
+    margin: 1px;
+}
 .product-image {      
     list-style-type: none;
     width: 290px;
     padding: 20px;
     margin: 6px 6px;        
-    border: 1px solid #33B5E5;
+    border: 1px solid #1a5b73;
   } 
   
   .product-container {
@@ -43,3 +47,13 @@
     color: black;
     font-family: 'Times New Roman', Times, serif;
   }
+
+.article > div{
+    margin-top: 64px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}

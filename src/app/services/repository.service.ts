@@ -64,9 +64,13 @@ export class RepositoryService {
     return JSON.parse(savedCart);
   }
 
+  getCartItemById(id: number) : CartItem | undefined{
+    return this.getCart().find(currentCart => currentCart.product.id === id);
+  }
+
   addToCart(newItem: CartItem) {
     const cart = this.getCart();
-    const itemInCart = cart.find(currentCart => currentCart.product.id === newItem.product.id);
+    const itemInCart = this.getCartItemById(newItem.product.id);
 
     if(itemInCart){
       itemInCart.quantity += newItem.quantity;

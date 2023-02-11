@@ -3,7 +3,7 @@
   text-align: center;
   background: #5308bb;
   color: hsl(0, 0%, 100%);
-  padding: 9px;
+  padding:10px;
   flex-direction: column;
   align-content: space-between;
   justify-content: flex-start;
@@ -21,4 +21,13 @@
   .icon{
     margin-left: 15px;
     margin-right: 15px;
+  }
+
+  .title{
+
+    font-size: 48px;
+  }
+
+  .subtitle{
+    font-size: 38px;
   }
