@@ -53,7 +53,7 @@
                 formControlName="cc" 
                 >
                 <div *ngIf="formControls['cc'].invalid && (formControls['cc'].dirty || formControls['cc'].touched)"
-                class="alert alert-danger">Creidt Card has to be 16 characters or more</div>
+                class="alert alert-danger">Creidt Card has to be 16 (numbers)</div>
 
                 <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
             </form>

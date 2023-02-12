@@ -32,7 +32,9 @@ export class CartComponent implements OnInit {
           ]], 
           cc: ['',
            [Validators.minLength(16),
-           Validators.required]
+           Validators.required,
+           Validators.pattern("^[0-9]*$"),
+                    ]
           ]
        })
       }
