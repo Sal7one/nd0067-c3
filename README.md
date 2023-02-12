@@ -60,7 +60,7 @@ Order {
 
 1.  Run `npm install -g @angular/cli`
 2.  Run `npm i`
-3.  Run `ng serve --open`
+3.  Run `ng serve`
 
 
 
